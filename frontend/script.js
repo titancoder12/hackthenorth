@@ -7,29 +7,41 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(text, fromUser = true) {
         const messageContainer = document.createElement('div');
         messageContainer.className = 'input-container';
+        const messageContainer2 = document.createElement('div');
+        messageContainer2.className = 'input-container';
     
-        // Create the image element
         const img = document.createElement('img');
-        img.src = fromUser ? './g1.png' : './g2.png'; // Use different images based on user or bot
+        img.src = fromUser ? './g1.png' : './g2.png'; 
         img.alt = 'Logo';
         img.className = 'logo';
+
+        const img2 = document.createElement('img');
+        img2.src = './g2.png'; 
+        img2.alt = 'Logo';
+        img2.className = 'logo';
     
-        // Create the text area
+  
         const textArea = document.createElement('textarea');
         textArea.className = 'input-box';
         textArea.value = (fromUser ? 'User: ' : 'Bot: ') + text;
         textArea.readOnly = true;
         textArea.rows = 4;
         textArea.style.resize = 'none';
+
+        const textArea2 = document.createElement('textarea');
+        textArea2.className = 'input-box';
+        textArea2.value = (fromUser ? 'User: ' : 'Bot: ') + text;
+        textArea2.readOnly = true;
+        textArea2.rows = 4;
+        textArea2.style.resize = 'none';
     
-        // Add the image and text area to the message container
+
         messageContainer.appendChild(img);
         messageContainer.appendChild(textArea);
-    
-        // Add the message container to the chat box
+        messageContainer2.appendChild(textArea2);
+        messageContainer2.appendChild(img2);
         chatBox.appendChild(messageContainer);
-    
-        // Scroll to the bottom of the chat box
+        chatBox.appendChild(messageContainer2);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
     
@@ -53,3 +65,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Typewriter Animation
+const typewriterText = `
+How it works?
+
+First you need to provide some instructions to Goose 1 and Goose 2.
+You can define how you want them to behave and respond.
+When you're done, click "Next"!
+`;
+
+let i = 0;
+const speed = 50; // Speed of typing in milliseconds
+
+function typeWriter() {
+if (i < typewriterText.length) {
+    document.getElementById("typewriter-text").innerHTML += typewriterText.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+}
+}
+
+// Start the typewriter animation when DOM is ready
+typeWriter();

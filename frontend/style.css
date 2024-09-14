@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Courier New", Courier, monospace;
     background-color: #f5f5f5;
 }
 
@@ -236,4 +236,19 @@ h1 {
 
 .end-btn:hover {
     background: #c82333;
+}
+
+#typewriter-text {
+    font-family: monospace;
+    white-space: pre-wrap;
+    overflow: hidden; /* Ensures text stays hidden until animated */
+    border-right: 3px solid; /* Creates the blinking cursor */
+    width: 100%;
+    margin: 0 auto;
+    animation: blinkCursor 0.7s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    from { border-right-color: black; }
+    to { border-right-color: transparent; }
 }
