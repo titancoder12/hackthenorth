@@ -7,6 +7,9 @@ import os
 from groq import Groq
 import openai
 
+max_limit = 100
+temp = 1
+
 # Create your views here.
 class createConversation(APIView):
     def get_serializer(self, *args, **kwargs):
@@ -33,6 +36,8 @@ class createConversation(APIView):
                     },
                 ],
                 model="llama3-8b-8192",
+                #max_tokens=max_limit,
+                temperature=temp
             )
 
             # Add to conversation
@@ -48,6 +53,8 @@ class createConversation(APIView):
                     }
                 ],
                 model="llama3-8b-8192",
+                #max_tokens=max_limit,
+                temperature=temp
             )
 
             # Add to conversation
@@ -65,10 +72,12 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": "The text given is the opposing argument. Write a response to this argument.",
+                            "content": "The text given is the opposing argument. Write a brief response to this argument.",
                         },
                     ],
                     model="llama3-8b-8192",
+                    #max_tokens=max_limit,
+                    temperature=temp
                 )
 
                 conversationA.append(chat_completion_a.choices[0].message.content)
@@ -81,10 +90,12 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": "The text given is the opposing argument. Write a response to this argument.",
+                            "content": "The text given is the opposing argument. Write a brief response to this argument.",
                         },
                     ],
                     model="llama3-8b-8192",
+                    #max_tokens=max_limit,
+                    temperature=temp
                 )
 
                 conversationB.append(chat_completion_b.choices[0].message.content)
@@ -94,23 +105,8 @@ class createConversation(APIView):
             print(conversationB)
 
             conversation = [conversationA, conversationB]
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            data = {
+                "conversation": conversation
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class getNextMessage(APIView):
-    def get(self, request):
-        client = Groq(
-            api_key=os.environ.get("GROQ_API_KEY"),
-        )
-
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": "Hello",
-                },
-            ],
-            model="llama3-8b-8192",
-        )
-
-        return Response(chat_completion.choices[0].message.content, status=status.HTTP_200_OK)
