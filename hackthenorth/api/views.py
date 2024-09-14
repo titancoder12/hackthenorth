@@ -8,8 +8,8 @@ from groq import Groq
 import openai
 
 max_limit = 100
-temp = 0.8
-prompt = "The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
+temp = 0.6
+#prompt = f"Remember, you are trying to advocate for: "{prompt1}" The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
 #setup_prompt = "Prove why the prompt is right."
 
 # Create your views here.
@@ -28,9 +28,17 @@ class createConversation(APIView):
                 api_key=os.environ.get("GROQ_API_KEY")
             )
 
+            sysprompt1 = f"Remember, you are trying to advocate for: '{serializer.data['prompt1']}' The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
+            sysprompt2 = f"Remember, you are trying to advocate for: '{serializer.data['prompt2']}' The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
 
-            conversationA = []
-            conversationB = []
+
+            # Conversation stemming from 1st prompt
+            conversation1 = []
+
+            # Conversation stemming from 2nd prompt
+            conversation2 = []
+
+            # Create the first prompt
             chat_completion1 = client.chat.completions.create(
                 messages=[
                     {
@@ -47,11 +55,10 @@ class createConversation(APIView):
                 temperature=temp
             )
 
-            # Add to conversation
-            conversationA.append(chat_completion1.choices[0].message.content)
-            
-            print(chat_completion1.choices[0].message.content)
+            # Add to conversation A
+            conversation1.append(chat_completion1.choices[0].message.content)
 
+            # Create the second prompt
             chat_completion2 = client.chat.completions.create(
                 messages=[
                     {
@@ -68,18 +75,19 @@ class createConversation(APIView):
                 temperature=temp
             )
 
-            # Add to conversation
-            conversationB.append(chat_completion2.choices[0].message.content)
-
-            print(chat_completion2.choices[0].message.content)
+            # Add to conversation B
+            conversation2.append(chat_completion2.choices[0].message.content)
                 
+            # Create a tmp completion for loop around, starting value is the second prompt
             tmp_completion = serializer.data["prompt2"]
 
+            # Get number of messages/prompts to generate
             nmessages = int(serializer.data["nmessages"])
             if nmessages > 30:
                 nmessages = 30
 
-            for i in range(nmessages):
+            # Generate the conversation
+            for i in range(nmessages - 2):
                 chat_completion_a = client.chat.completions.create(
                     messages=[
                         {
@@ -88,7 +96,7 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": prompt,
+                            "content": sysprompt2,
                         },
                     ],
                     model="llama3-8b-8192",
@@ -96,7 +104,7 @@ class createConversation(APIView):
                     temperature=temp
                 )
 
-                conversationA.append(chat_completion_a.choices[0].message.content)
+                conversation1.append(chat_completion_a.choices[0].message.content)
 
                 chat_completion_b = client.chat.completions.create(
                     messages=[
@@ -106,7 +114,7 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": prompt,
+                            "content": sysprompt1,
                         },
                     ],
                     model="llama3-8b-8192",
@@ -114,15 +122,49 @@ class createConversation(APIView):
                     temperature=temp
                 )
 
-                conversationB.append(chat_completion_b.choices[0].message.content)
+                conversation2.append(chat_completion_b.choices[0].message.content)
                 tmp_completion = chat_completion_b.choices[0].message.content
             
-            print(conversationA)
-            print(conversationB)
+            chat_completion_a = client.chat.completions.create(
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": tmp_completion
+                        },
+                        {
+                            "role": "system",
+                            "content": sysprompt2+" Conclude your argument.",
+                        },
+                    ],
+                    model="llama3-8b-8192",
+                    #max_tokens=max_limit,
+                    temperature=temp
+            )
+            conversation1.append(chat_completion_a.choices[0].message.content)
 
-            conversation = [conversationA, conversationB]
+            chat_completion_b = client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "user",
+                        "content": chat_completion_a.choices[0].message.content
+                    },
+                        { 
+                            "role": "system",
+                            "content": sysprompt2+" Conclude your argument.",
+                        },
+                ],
+                model="llama3-8b-8192",
+                #max_tokens=max_limit,
+                temperature=temp
+            )
+            conversation2.append(chat_completion_b.choices[0].message.content)
+
+            # Package the data
+            conversation = [conversation1, conversation2]
             data = {
                 "conversation": conversation
             }
+
+            # Return the data
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
