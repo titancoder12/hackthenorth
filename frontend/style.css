@@ -2,6 +2,12 @@
     position: relative;
 } */
 
+.promptIn {
+    width: 36vw;
+    margin-top: 2vh;
+    margin-left: 2vw;
+}
+
 #promptSelect {
     position: absolute;
     width: 40vw;
