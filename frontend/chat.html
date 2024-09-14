@@ -14,11 +14,13 @@
             <img src="logo.png" alt="" class="logo">
             <h1>Let's Goose!</h1>
         </header>
-        <!-- Loading -->
-        <div id="loading" class="loading-container">
-            <img id="loading-image" src="goose1.png" alt="Loading Image" class="loading-image">
-
+        <div id="loading-modal" class="loading-modal">
+            <div class="loading-content">
+                <img id="loading-image" src="goose6.png" alt="Loading Image" class="loading-image">
+                <p>Processing...</p>
+            </div>
         </div>
+        
         <div id="chat-box" class="chat-box"></div>
         <!-- <div class="input-container">
             <textarea id="user-input-2" class="input-box" placeholder="Type your message..."></textarea>
@@ -49,7 +51,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="next-btn">Start!</button>
+                <button id="start-btn">Start!</button>
             </div>
         </div>
     </div>
@@ -62,9 +64,40 @@
             document.getElementById('infoModal').style.display = 'block';
         };
 
-        document.getElementById('next-btn').addEventListener('click', function() {
+        document.getElementById('start-btn').addEventListener('click', function() {
             document.getElementById('infoModal').style.display = 'none';
+            document.getElementById('loading-modal').style.display = 'flex';
+            loading(); 
+            setTimeout(() => {
+                document.getElementById('loading-modal').style.display = 'none';
+            }, 10000); 
         });
+
+        function loading() {
+            const images = [
+                'goose4.png',
+                'goose1.png',
+                'goose3.png',
+                'goose5.png',
+                'goose2.png',
+                'goose4.png'
+            ];
+
+            let currentIndex = 0;
+            const loadingImage = document.getElementById('loading-image');
+
+            // Function to change the image every 2 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length; // Loop through images
+                loadingImage.style.opacity = 0; 
+
+                setTimeout(() => {
+                    loadingImage.src = images[currentIndex]; 
+                    loadingImage.style.opacity = 1; 
+                }, 500);
+            }, 2000); 
+        }
+     
     </script>
 </body>
 </html>

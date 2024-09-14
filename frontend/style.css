@@ -253,17 +253,25 @@ h1 {
     to { border-right-color: transparent; }
 }
 
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.loading-modal {
+    display: none; /* Hidden by default, shown on script action */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     justify-content: center;
-    background-color: rgba(255, 0, 0, 0);
+    align-items: center;
+    z-index: 1000; /* Make sure it's above other content */
+}
+
+.loading-content {
+    text-align: center;
 }
 
 .loading-image {
-    width: 150px;
+    width: 150px; /* Adjust as needed */
     height: auto;
-    margin-bottom: 20px;
     transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
 }

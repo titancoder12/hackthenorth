@@ -49,11 +49,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', () => {
         const userMessage = "I hate chickens!";
         if (userMessage) {
-            addMessage(userMessage);
-            userInput.value = '';
-            setTimeout(() => addMessage('This is a bot response.'), 500);
+            // Show loading modal
+            //document.getElementById('loading-modal').style.display = 'flex';
+    
+            // Simulate delay to show loading (like waiting for bot response)
+            setTimeout(() => {
+                // Hide loading modal after the simulated delay
+                //document.getElementById('loading-modal').style.display = 'none';
+    
+                // Append user message to chat
+                addMessage(userMessage);
+    
+                // Append bot response after a delay
+                setTimeout(() => addMessage('This is a bot response.', false), 500);
+            }, 2000); // Set delay as necessary (e.g., 2 seconds)
         }
     });
+    
 
     endBtn.addEventListener('click', () => {
         addMessage('Conversation ended.');
@@ -72,11 +84,11 @@ How it works?
 
 First you need to provide some instructions to Goose 1 and Goose 2.
 You can define how you want them to behave and respond.
-When you're done, click "Next"!
+When you're done, click "Start"!
 `;
 
 let i = 0;
-const speed = 50; // Speed of typing in milliseconds
+const speed = 30; // Speed of typing in milliseconds
 
 function typeWriter() {
 if (i < typewriterText.length) {
@@ -119,4 +131,3 @@ function loading() {
      
     }, 12000); // Display content after all images have looped twice
 };
-loading()
