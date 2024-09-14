@@ -8,8 +8,8 @@ from groq import Groq
 import openai
 
 max_limit = 100
-temp = 0
-prompt = "The text given is the opposing argument. Write a brief response to this argument. You don't like the other opponent. Be mean."
+temp = 0.8
+prompt = "The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
 #setup_prompt = "Prove why the prompt is right."
 
 # Create your views here.
