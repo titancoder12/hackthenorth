@@ -89,7 +89,7 @@ if (i < typewriterText.length) {
 // Start the typewriter animation when DOM is ready
 typeWriter();
 
-window.onload = function() {
+function loading() {
     const images = [
         'goose1.png',
         'goose2.png',
@@ -116,6 +116,7 @@ window.onload = function() {
     // Simulate content loading after 12 seconds (6 images x 2 seconds)
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
+     
     }, 12000); // Display content after all images have looped twice
 };
+loading()
