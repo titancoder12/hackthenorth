@@ -49,20 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', () => {
         const userMessage = "I hate chickens!";
         if (userMessage) {
-            // Show loading modal
-            //document.getElementById('loading-modal').style.display = 'flex';
+
     
             // Simulate delay to show loading (like waiting for bot response)
-            setTimeout(() => {
-                // Hide loading modal after the simulated delay
-                //document.getElementById('loading-modal').style.display = 'none';
+    
     
                 // Append user message to chat
                 addMessage(userMessage);
     
                 // Append bot response after a delay
-                setTimeout(() => addMessage('This is a bot response.', false), 500);
-            }, 2000); // Set delay as necessary (e.g., 2 seconds)
+   // Set delay as necessary (e.g., 2 seconds)
         }
     });
     
