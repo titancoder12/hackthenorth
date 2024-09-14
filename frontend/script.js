@@ -21,5 +21,5 @@ function startConversation() {
 
     xhr.send(data);
     let conversationData = xhr.response;
-    console.log(conversationData)
+    console.log(conversationData);
 }
