@@ -8,7 +8,9 @@ from groq import Groq
 import openai
 
 max_limit = 100
-temp = 1
+temp = 0
+prompt = "The text given is the opposing argument. Write a brief response to this argument. You don't like the other opponent. Be mean."
+#setup_prompt = "Prove why the prompt is right."
 
 # Create your views here.
 class createConversation(APIView):
@@ -26,6 +28,7 @@ class createConversation(APIView):
                 api_key=os.environ.get("GROQ_API_KEY")
             )
 
+
             conversationA = []
             conversationB = []
             chat_completion1 = client.chat.completions.create(
@@ -34,6 +37,10 @@ class createConversation(APIView):
                         "role": "user",
                         "content": serializer.data["prompt1"],
                     },
+                    #{
+                    #    "role": "system",
+                    #    "content": setup_prompt,
+                    #},
                 ],
                 model="llama3-8b-8192",
                 #max_tokens=max_limit,
@@ -50,7 +57,11 @@ class createConversation(APIView):
                     {
                         "role": "user",
                         "content": serializer.data["prompt2"],
-                    }
+                    },
+                    #{
+                    #    "role": "system",
+                    #    "content": setup_prompt,
+                    #},
                 ],
                 model="llama3-8b-8192",
                 #max_tokens=max_limit,
@@ -63,7 +74,12 @@ class createConversation(APIView):
             print(chat_completion2.choices[0].message.content)
                 
             tmp_completion = serializer.data["prompt2"]
-            for i in range(10):
+
+            nmessages = int(serializer.data["nmessages"])
+            if nmessages > 30:
+                nmessages = 30
+
+            for i in range(nmessages):
                 chat_completion_a = client.chat.completions.create(
                     messages=[
                         {
@@ -72,7 +88,7 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": "The text given is the opposing argument. Write a brief response to this argument.",
+                            "content": prompt,
                         },
                     ],
                     model="llama3-8b-8192",
@@ -90,7 +106,7 @@ class createConversation(APIView):
                         },
                         {
                             "role": "system",
-                            "content": "The text given is the opposing argument. Write a brief response to this argument.",
+                            "content": prompt,
                         },
                     ],
                     model="llama3-8b-8192",
