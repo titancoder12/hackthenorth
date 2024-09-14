@@ -1,8 +1,12 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
+
     const chatBox = document.getElementById('chat-box');
     const sendBtn = document.getElementById('send-btn');
     const endBtn = document.getElementById('end-btn');
     const userInput = document.getElementById('user-input');
+
 
     function addMessage(text, fromUser = true) {
         const messageContainer = document.createElement('div');
@@ -45,20 +49,48 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
     
+    window.onload = function() {
+        document.getElementById('infoModal').style.display = 'block';
+    };
+    
+    document.getElementById('start-btn').addEventListener('click', function() {
+        const userMessage = "I hate chickens!";
+        document.getElementById('infoModal').style.display = 'none';
+        document.getElementById('loading-modal').style.display = 'flex';
+        loading(); 
+    
+        setTimeout(() => {
+            document.getElementById('loading-modal').style.display = 'none';
+            addMessage(userMessage)
+        }, 5000); 
+    });
+    
+    function loading() {
+        const images = [
+            'goose1.png',
+            'goose3.png',
+            'goose5.png',
+            'goose2.png',
+        ];
+    
+        let currentIndex = 0;
+        const loadingImage = document.getElementById('loading-image');
+    
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length; 
+            loadingImage.style.opacity = 0; 
+    
+            setTimeout(() => {
+                loadingImage.src = images[currentIndex]; 
+                loadingImage.style.opacity = 1; 
+            }, 400);
+        }, 1000); 
+    }
 
     sendBtn.addEventListener('click', () => {
         const userMessage = "I hate chickens!";
         if (userMessage) {
-
-    
-            // Simulate delay to show loading (like waiting for bot response)
-    
-    
-                // Append user message to chat
                 addMessage(userMessage);
-    
-                // Append bot response after a delay
-   // Set delay as necessary (e.g., 2 seconds)
         }
     });
     
@@ -72,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
             sendBtn.click();
         }
     });
+
+    
 });
 
 // Typewriter Animation
@@ -84,7 +118,7 @@ When you're done, click "Start"!
 `;
 
 let i = 0;
-const speed = 30; // Speed of typing in milliseconds
+const speed = 30;
 
 function typeWriter() {
 if (i < typewriterText.length) {
@@ -94,36 +128,32 @@ if (i < typewriterText.length) {
 }
 }
 
-// Start the typewriter animation when DOM is ready
 typeWriter();
 
-function loading() {
-    const images = [
-        'goose1.png',
-        'goose2.png',
-        'goose3.png',
-        'goose4.png',
-        'goose5.png',
-        'goose6.png'
-    ];
+// function loading() {
+//     const images = [
+//         'goose1.png',
+//         'goose2.png',
+//         'goose3.png',
+//         'goose4.png',
+//         'goose5.png',
+//         'goose6.png'
+//     ];
 
-    let currentIndex = 0;
-    const loadingImage = document.getElementById('loading-image');
+//     let currentIndex = 0;
+//     const loadingImage = document.getElementById('loading-image');
 
-    // Function to change the image every 2 seconds
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length; // Loop through images
-        loadingImage.style.opacity = 0; // Start fade-out transition
+//     setInterval(() => {
+//         currentIndex = (currentIndex + 1) % images.length; 
+//         loadingImage.style.opacity = 0; 
 
-        setTimeout(() => {
-            loadingImage.src = images[currentIndex]; // Change the image
-            loadingImage.style.opacity = 1; // Start fade-in transition
-        }, 500); // Half-second delay for the fade-out effect
-    }, 2000); // Change every 2 seconds
+//         setTimeout(() => {
+//             loadingImage.src = images[currentIndex]; 
+//             loadingImage.style.opacity = 1; 
+//         }, 500); 
+//     }, 500);
 
-    // Simulate content loading after 12 seconds (6 images x 2 seconds)
-    setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-     
-    }, 12000); // Display content after all images have looped twice
-};
+//     setTimeout(() => {
+//         document.getElementById('loading').style.display = 'none';
+//     }, 1000); 
+// };
