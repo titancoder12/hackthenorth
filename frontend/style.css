@@ -203,7 +203,7 @@ h1 {
     margin: 10px;
     border: none;
     border-radius: 5px;
-    background: #007bff;
+    background: #77A67E;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -211,7 +211,7 @@ h1 {
 }
 
 .send-btn:hover {
-    background: #0056b3;
+    background: #c3f2ca;
 }
 
 .end-container {
@@ -227,7 +227,7 @@ h1 {
     margin: 10px;
     border: none;
     border-radius: 5px;
-    background: #dc3545;
+    background: #FA7621;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -235,7 +235,7 @@ h1 {
 }
 
 .end-btn:hover {
-    background: #c82333;
+    background: #fcac77;
 }
 
 #typewriter-text {
@@ -251,4 +251,18 @@ h1 {
 @keyframes blinkCursor {
     from { border-right-color: black; }
     to { border-right-color: transparent; }
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
 }
