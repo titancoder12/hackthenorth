@@ -5,14 +5,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
 
     function addMessage(text, fromUser = true) {
-        const message = document.createElement('p');
-        message.textContent = (fromUser ? 'User: ' : 'Bot: ') + text;
-        chatBox.appendChild(message);
-        chatBox.scrollTop = chatBox.scrollHeight; 
+        const messageContainer = document.createElement('div');
+        messageContainer.className = 'input-container';
+    
+        // Create the image element
+        const img = document.createElement('img');
+        img.src = fromUser ? './g1.png' : './g2.png'; // Use different images based on user or bot
+        img.alt = 'Logo';
+        img.className = 'logo';
+    
+        // Create the text area
+        const textArea = document.createElement('textarea');
+        textArea.className = 'input-box';
+        textArea.value = (fromUser ? 'User: ' : 'Bot: ') + text;
+        textArea.readOnly = true;
+        textArea.rows = 4;
+        textArea.style.resize = 'none';
+    
+        // Add the image and text area to the message container
+        messageContainer.appendChild(img);
+        messageContainer.appendChild(textArea);
+    
+        // Add the message container to the chat box
+        chatBox.appendChild(messageContainer);
+    
+        // Scroll to the bottom of the chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
+    
 
     sendBtn.addEventListener('click', () => {
-        const userMessage = userInput.value.trim();
+        const userMessage = "I hate chickens!";
         if (userMessage) {
             addMessage(userMessage);
             userInput.value = '';

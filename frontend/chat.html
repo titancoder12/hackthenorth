@@ -3,29 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deb8</title>
+    <title>GooseAI</title>
     <link rel="stylesheet" href="style.css">
-</head>
+   </head>
 <body>
     <div class="chat-container">
         <header class="chat-header">
             <img src="logo.png" alt="" class="logo">
-            <h1>Deb8</h1>
+            <h1>Let's Goose!</h1>
         </header>
         <div id="chat-box" class="chat-box"></div>
-        <div class="input-container">
-            <img src="logo.png" alt="Logo" class="logo">
-            <input type="text" id="user-input" class="input-box" placeholder="Type your message...">
-        </div>
-        <div class="input-container">
-            <img src="logo.png" alt="Logo" class="logo">
-            <input type="text" id="user-input" class="input-box" placeholder="Type your message...">
-        </div>
+        <!-- <div class="input-container">
+            <textarea id="user-input-2" class="input-box" placeholder="Type your message..."></textarea>
+            <img src="./g2.png" alt="Logo" class="logo">
+        </div> -->
         <div class="end-container">
             <button id="send-btn" class="send-btn">Send</button>
             <button id="end-btn" class="end-btn">End Chat</button>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                How it works?
+            </div>
+            <div class="modal-body">
+                <div class="step">
+                    <img src="./g1.png" alt="Instruction Image 1" class="logo">
+                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                </div>
+                <div class="step">
+                   
+                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                    <img src="./g2.png" alt="Instruction Image 1" class="logo">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('infoModal').style.display = 'block';
+        };
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            document.getElementById('infoModal').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
