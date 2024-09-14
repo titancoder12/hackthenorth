@@ -1,0 +1,19 @@
+/* body {
+    position: relative;
+} */
+
+.promptIn {
+    width: 36vw;
+    margin-top: 2vh;
+    margin-left: 2vw;
+}
+
+#promptSelect {
+    position: absolute;
+    width: 40vw;
+    height: 40vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+}
