@@ -56,8 +56,7 @@
         </div>
     </div>
 
-
-
+    <script src="getconversation.js"></script>
     <script src="script.js"></script>
     <script>
         window.onload = function() {
@@ -68,35 +67,11 @@
             document.getElementById('infoModal').style.display = 'none';
             document.getElementById('loading-modal').style.display = 'flex';
             loading(); 
-            setTimeout(() => {
-                document.getElementById('loading-modal').style.display = 'none';
-            }, 10000); 
+
+            // setTimeout(() => {
+            //     document.getElementById('loading-modal').style.display = 'none';
+            // }, 10000); 
         });
-
-        function loading() {
-            const images = [
-                'goose4.png',
-                'goose1.png',
-                'goose3.png',
-                'goose5.png',
-                'goose2.png',
-                'goose4.png'
-            ];
-
-            let currentIndex = 0;
-            const loadingImage = document.getElementById('loading-image');
-
-            // Function to change the image every 2 seconds
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % images.length; // Loop through images
-                loadingImage.style.opacity = 0; 
-
-                setTimeout(() => {
-                    loadingImage.src = images[currentIndex]; 
-                    loadingImage.style.opacity = 1; 
-                }, 500);
-            }, 2000); 
-        }
      
     </script>
 </body>
