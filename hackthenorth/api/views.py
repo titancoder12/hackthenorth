@@ -9,6 +9,8 @@ import openai
 
 max_limit = 100
 temp = 0.6
+model = "llama3-70b-8192"
+#model = "gemma-7b-it"
 #prompt = f"Remember, you are trying to advocate for: "{prompt1}" The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
 #setup_prompt = "Prove why the prompt is right."
 
@@ -50,7 +52,7 @@ class createConversation(APIView):
                     #    "content": setup_prompt,
                     #},
                 ],
-                model="llama3-8b-8192",
+                model=model,
                 #max_tokens=max_limit,
                 temperature=temp
             )
@@ -70,7 +72,7 @@ class createConversation(APIView):
                     #    "content": setup_prompt,
                     #},
                 ],
-                model="llama3-8b-8192",
+                model=model,
                 #max_tokens=max_limit,
                 temperature=temp
             )
