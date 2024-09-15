@@ -71,9 +71,13 @@
             console.log(document.getElementById("prompt2").value);
             var convprom = startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5)
             var conv;
+            console.log(Date.now());
             convprom.then(result => {
                 conv = result;
             })
+            busywait(2000);
+            console.log(Date.now());
+            console.log(conv)
             document.getElementById('loading-modal').style.display = 'none';
         });
      

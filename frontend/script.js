@@ -1,4 +1,7 @@
-
+function busywait(time) {
+    const start = Date.now();
+    while ((Date.now() - start) < time) {}
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
