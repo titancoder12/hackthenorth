@@ -1,8 +1,7 @@
 body {
     margin: 0;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    padding-top: 10px;
 }
 
 /* Modal Styles */
@@ -16,12 +15,11 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-    overflow: hidden;
 }
 
 .modal-content {
     background-color: #ffffff;
-    margin: 6% auto;
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -36,13 +34,40 @@ body {
     margin-bottom: 20px;
 }
 
-#promptDone {
-    float: left;
-    margin-top: 2vh;
-    margin-left: 2vw;
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-#promptSelect {
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.step img {
+    max-width: 60px;
+    border-radius: 8px;
+}
+
+.step textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #ffffff;
+    resize: none;
+    overflow: hidden;
+    max-height: 80px;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step textarea::before {
+    content: "";
     position: absolute;
     bottom: -10px; 
     left: 10px; 
@@ -70,7 +95,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background: #77A67E;
+    background: #007bff;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -78,16 +103,15 @@ body {
 }
 
 .modal-footer button:hover {
-    background: #59372F;
+    background: #0056b3;
 }
 
 
 .chat-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-    height: calc(100vh - 20px);
-    max-width: 80%/*480px;*/;
+    height: 100vh;
+    max-width: 480px;
     margin: auto;
     background: #ffffff;
     border-radius: 10px;
@@ -99,7 +123,7 @@ body {
     display: flex;
     align-items: center;
     padding: 15px;
-    background: #6080BF;
+    background: #007bff;
     color: #ffffff;
 }
 
@@ -179,7 +203,7 @@ h1 {
     margin: 10px;
     border: none;
     border-radius: 5px;
-    background: #77A67E;
+    background: #007bff;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -187,7 +211,7 @@ h1 {
 }
 
 .send-btn:hover {
-    background: #c3f2ca;
+    background: #0056b3;
 }
 
 .end-container {
@@ -203,7 +227,7 @@ h1 {
     margin: 10px;
     border: none;
     border-radius: 5px;
-    background: #FA7621;
+    background: #dc3545;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -211,43 +235,5 @@ h1 {
 }
 
 .end-btn:hover {
-    background: #fcac77;
-}
-
-#typewriter-text {
-    font-family: monospace;
-    white-space: pre-wrap;
-    overflow: hidden; /* Ensures text stays hidden until animated */
-    border-right: 3px solid; /* Creates the blinking cursor */
-    width: 100%;
-    margin: 0 auto;
-    animation: blinkCursor 0.7s step-end infinite;
-}
-
-@keyframes blinkCursor {
-    from { border-right-color: black; }
-    to { border-right-color: transparent; }
-}
-
-.loading-modal {
-    display: none; /* Hidden by default, shown on script action */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Make sure it's above other content */
-}
-
-.loading-content {
-    text-align: center;
-}
-
-.loading-image {
-    width: 150px; /* Adjust as needed */
-    height: auto;
-    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
+    background: #c82333;
 }
