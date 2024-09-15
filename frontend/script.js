@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatBox = document.getElementById('chat-box');
     const sendBtn = document.getElementById('send-btn');
     const endBtn = document.getElementById('end-btn');
-    const userInput = document.getElementById('user-input');
+    // const userInput = document.getElementById('user-input');
 
 
     function addMessage(text, fromUser = true) {
@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessage('Conversation ended.');
     });
 
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendBtn.click();
-        }
-    });
+    // userInput.addEventListener('keypress', (e) => {
+    //     if (e.key === 'Enter') {
+    //         sendBtn.click();
+    //     }
+    // });
 
     
 });
@@ -130,30 +130,30 @@ if (i < typewriterText.length) {
 
 typeWriter();
 
-// function loading() {
-//     const images = [
-//         'goose1.png',
-//         'goose2.png',
-//         'goose3.png',
-//         'goose4.png',
-//         'goose5.png',
-//         'goose6.png'
-//     ];
+function loading() {
+    const images = [
+        'goose1.png',
+        'goose2.png',
+        'goose3.png',
+        'goose4.png',
+        'goose5.png',
+        'goose6.png'
+    ];
 
-//     let currentIndex = 0;
-//     const loadingImage = document.getElementById('loading-image');
+    let currentIndex = 0;
+    const loadingImage = document.getElementById('loading-image');
 
-//     setInterval(() => {
-//         currentIndex = (currentIndex + 1) % images.length; 
-//         loadingImage.style.opacity = 0; 
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length; 
+        loadingImage.style.opacity = 0; 
 
-//         setTimeout(() => {
-//             loadingImage.src = images[currentIndex]; 
-//             loadingImage.style.opacity = 1; 
-//         }, 500); 
-//     }, 500);
+        setTimeout(() => {
+            loadingImage.src = images[currentIndex]; 
+            loadingImage.style.opacity = 1; 
+        }, 500); 
+    }, 500);
 
-//     setTimeout(() => {
-//         document.getElementById('loading').style.display = 'none';
-//     }, 1000); 
-// };
+    setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+    }, 1000); 
+};

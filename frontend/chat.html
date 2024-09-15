@@ -11,7 +11,7 @@
   
     <div class="chat-container">
         <header class="chat-header">
-            <img src="logo.png" alt="" class="logo">
+            <!-- <img src="logo.png" alt="" class="logo"> -->
             <h1>Let's Goose!</h1>
         </header>
         <div id="loading-modal" class="loading-modal">
@@ -42,11 +42,11 @@
             <div class="modal-body">
                 <div class="step">
                     <img src="./g1.png" alt="Instruction Image 1" class="logo">
-                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                    <textarea rows="4" placeholder="Instruction text here..." id="prompt1"></textarea>
                 </div>
                 <div class="step">
                    
-                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                    <textarea rows="4" placeholder="Instruction text here..." id="prompt2"></textarea>
                     <img src="./g2.png" alt="Instruction Image 1" class="logo">
                 </div>
             </div>
@@ -56,8 +56,27 @@
         </div>
     </div>
 
-
-
+    <script src="getconversation.js"></script>
     <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('infoModal').style.display = 'block';
+        };
+
+        document.getElementById('start-btn').addEventListener('click', function() {
+            document.getElementById('infoModal').style.display = 'none';
+            document.getElementById('loading-modal').style.display = 'flex';
+            loading();
+            console.log(document.getElementById("prompt1").value);
+            console.log(document.getElementById("prompt2").value);
+            var convprom = startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5)
+            var conv;
+            convprom.then(result => {
+                conv = result;
+            })
+            document.getElementById('loading-modal').style.display = 'none';
+        });
+     
+    </script>
 </body>
 </html>
