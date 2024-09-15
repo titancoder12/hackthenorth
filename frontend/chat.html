@@ -42,11 +42,11 @@
             <div class="modal-body">
                 <div class="step">
                     <img src="./g1.png" alt="Instruction Image 1" class="logo">
-                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                    <textarea rows="4" placeholder="Instruction text here..." id="prompt1"></textarea>
                 </div>
                 <div class="step">
                    
-                    <textarea rows="4" placeholder="Instruction text here..."></textarea>
+                    <textarea rows="4" placeholder="Instruction text here..." id="prompt2"></textarea>
                     <img src="./g2.png" alt="Instruction Image 1" class="logo">
                 </div>
             </div>
@@ -67,10 +67,11 @@
             document.getElementById('infoModal').style.display = 'none';
             document.getElementById('loading-modal').style.display = 'flex';
             loading(); 
-            
+            startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5);
             // setTimeout(() => {
             //     document.getElementById('loading-modal').style.display = 'none';
-            // }, 10000); 
+            // }, 10000);
+            document.getElementById('loading-modal').style.display = 'none';
         });
      
     </script>
