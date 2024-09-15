@@ -90,12 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); 
     }
 
-    sendBtn.addEventListener('click', () => {
-        const userMessage = "I hate chickens!";
-        if (userMessage) {
-                addMessage(userMessage);
-        }
-    });
+    //sendBtn.addEventListener('click', () => {
+    //    const userMessage = "I hate chickens!";
+    //    if (userMessage) {
+    //            addMessage(userMessage);
+    //    }
+    //});
     
 
     endBtn.addEventListener('click', () => {

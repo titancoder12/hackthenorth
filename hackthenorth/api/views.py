@@ -25,8 +25,7 @@ class createConversation(APIView):
         # Check if the serializer is valid
         if serializer.is_valid():
             # Set model as OpenAI
-            client = openai.OpenAI(
-                base_url="https://api.groq.com/openai/v1",
+            client = Groq(
                 api_key=os.environ.get("GROQ_API_KEY")
             )
 
