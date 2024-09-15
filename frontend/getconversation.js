@@ -7,5 +7,6 @@ async function startConversation(text1, text2, msgnum) {
         body: JSON.stringify({"prompt1": text1, "prompt2": text2, "nmessages": Number(msgnum)})
     });
     payload = await response.json();
+    console.log(payload.conversation);
     return payload.conversation;
 }
