@@ -11,7 +11,7 @@
   
     <div class="chat-container">
         <header class="chat-header">
-            <img src="logo.png" alt="" class="logo">
+            <!-- <img src="logo.png" alt="" class="logo"> -->
             <h1>Let's Goose!</h1>
         </header>
         <div id="loading-modal" class="loading-modal">
@@ -66,11 +66,14 @@
         document.getElementById('start-btn').addEventListener('click', function() {
             document.getElementById('infoModal').style.display = 'none';
             document.getElementById('loading-modal').style.display = 'flex';
-            loading(); 
-            startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5);
-            // setTimeout(() => {
-            //     document.getElementById('loading-modal').style.display = 'none';
-            // }, 10000);
+            loading();
+            console.log(document.getElementById("prompt1").value);
+            console.log(document.getElementById("prompt2").value);
+            var convprom = startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5)
+            var conv;
+            convprom.then(result => {
+                conv = result;
+            })
             document.getElementById('loading-modal').style.display = 'none';
         });
      

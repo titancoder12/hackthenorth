@@ -4,7 +4,7 @@ async function startConversation(text1, text2, msgnum) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({prompt1: text1.value, prompt2: text2.value, nmessages: msgnum})
+        body: JSON.stringify({"prompt1": text1, "prompt2": text2, "nmessages": Number(msgnum)})
     });
     payload = await response.json();
     return payload.conversation;
