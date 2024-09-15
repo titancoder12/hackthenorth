@@ -58,14 +58,13 @@ function startConversation(text1, text2, msgnum) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({"prompt1": text1, "prompt2": text2, "nmessages": Number(msgnum)})
-    }).then(response=>response.json())
-    .then(messages=>{
-        console.log(messages)
-        console.log(messages[1])
-        console.log(messages.type)
-    }).then(messages=>{
-        console.log(messages)
-        for (let i = 0; i < messages[0].length; i++) {
+    }).then(response => response.json())
+    .then(messages => {
+        console.log(messages);
+        console.log(messages[1]);
+        console.log(messages.type);
+
+        for (let i = 0; i < messages.length; i++) {
             addMessage(messages[0][i]);
             addMessage(messages[1][i]);
         }
