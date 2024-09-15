@@ -2,7 +2,6 @@ function busywait(time) {
     const start = Date.now();
     while ((Date.now() - start) < time) {}
 }
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const chatBox = document.getElementById('chat-box');
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function addMessage(text, fromUser = true) {
+        console.log("Recieved Command!")
         const messageContainer = document.createElement('div');
         messageContainer.className = 'input-container';
         const messageContainer2 = document.createElement('div');
@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     document.getElementById('start-btn').addEventListener('click', function() {
-        const userMessage = "I hate chickens!";
+    //    const userMessage = "I hate chickens!";
         document.getElementById('infoModal').style.display = 'none';
         document.getElementById('loading-modal').style.display = 'flex';
         loading(); 
     
         setTimeout(() => {
             document.getElementById('loading-modal').style.display = 'none';
-            addMessage(userMessage)
+            //addMessage(userMessage)
         }, 5000); 
     });
     
@@ -157,6 +157,9 @@ function loading() {
     }, 500);
 
     setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-    }, 1000); 
+        const loadingElement = document.getElementById('loading');
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
+    }, 1000);
 };

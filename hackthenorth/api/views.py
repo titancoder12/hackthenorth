@@ -6,6 +6,8 @@ from rest_framework import status
 import os
 from groq import Groq
 import openai
+from rest_framework.renderers import BaseRenderer
+import json
 
 max_limit = 100
 temp = 0.6
@@ -13,6 +15,13 @@ model = "llama3-70b-8192"
 #model = "gemma-7b-it"
 #prompt = f"Remember, you are trying to advocate for: "{prompt1}" The text given is the opposing argument. Write a brief response to this argument. Be aggresive toward the opponent, but be reasonable."
 #setup_prompt = "Prove why the prompt is right."
+
+class MyJSONRenderer(BaseRenderer):
+    media_type = 'application/json'
+    format = 'json'
+
+    def render(self, data, accepted_media_type=None, renderer_context=None):
+        return json.dumps(data)
 
 # Create your views here.
 class createConversation(APIView):
@@ -163,9 +172,11 @@ class createConversation(APIView):
             # Package the data
             conversation = [conversation1, conversation2]
             data = {
-                "conversation": conversation
+                "1": conversation1,
+                "2": conversation2 
             }
 
             # Return the data
-            return Response(data, status=status.HTTP_201_CREATED)
+            print(MyJSONRenderer().render(data))
+            return Response(MyJSONRenderer().render(data), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
