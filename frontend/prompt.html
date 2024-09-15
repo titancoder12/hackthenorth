@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--no longer used! page now in modal on chat.html-->
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="promptmanage.js"></script>
+        <title>ai debate</title>
+    </head>
+    <body>
+        <div id="promptSelect">
+            <form>
+                <input type="text" id="prompt1" class="form-control promptIn">
+                <input type="text" id="prompt2" class="form-control promptIn">
+            </form>
+            <button id="promptDone" onclick="startConversation()">Start!</button>
+            <input type="number" id="messages" min="1" max="30" value="5">
+        </div>
+    </body>
+</html>
