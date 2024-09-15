@@ -12,7 +12,7 @@
     <div class="chat-container">
         <header class="chat-header">
             <!-- <img src="logo.png" alt="" class="logo"> -->
-            <h1>Let's Goose!</h1>
+            <h1>GooseAI</h1>
         </header>
         <div id="loading-modal" class="loading-modal">
             <div class="loading-content">
@@ -27,8 +27,7 @@
             <img src="./g2.png" alt="Logo" class="logo">
         </div> -->
         <div class="end-container">
-            <button id="send-btn" class="send-btn">Send</button>
-            <button id="end-btn" class="end-btn">End Chat</button>
+            <button id="end-btn" class="end-btn">Try Again</button>
         </div>
     </div>
 
@@ -42,11 +41,10 @@
             <div class="modal-body">
                 <div class="step">
                     <img src="./g1.png" alt="Instruction Image 1" class="logo">
-                    <textarea rows="4" placeholder="Instruction text here..." id="prompt1"></textarea>
+                    <textarea rows="1" class="input-box" placeholder="Why are apples better than bananas?" id="prompt1"></textarea>
                 </div>
                 <div class="step">
-                   
-                    <textarea rows="4" placeholder="Instruction text here..." id="prompt2"></textarea>
+                    <textarea rows="1" class="input-box" placeholder="Why are bananas better than apples?" id="prompt2"></textarea>
                     <img src="./g2.png" alt="Instruction Image 1" class="logo">
                 </div>
             </div>
@@ -69,7 +67,7 @@
             loading();
             console.log(document.getElementById("prompt1").value);
             console.log(document.getElementById("prompt2").value);
-            var convprom = startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 5)
+            var convprom = startConversation(document.getElementById("prompt1").value, document.getElementById("prompt2").value, 10)
             var conv;
             //console.log(Date.now());
             //convprom.then(result => {

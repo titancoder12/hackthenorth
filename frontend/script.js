@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     endBtn.addEventListener('click', () => {
-        addMessage('Conversation ended.');
+        location.reload();
     });
 
     // userInput.addEventListener('keypress', (e) => {
@@ -113,11 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Typewriter Animation
 const typewriterText = `
-How it works?
+How does it work?
 
-First you need to provide some instructions to Goose 1 and Goose 2.
-You can define how you want them to behave and respond.
-When you're done, click "Start"!
+You need to provide some instructions to Goose 1 and Goose 2. You can define how you want them to behave and respond. When you're done, click "Start"!
 `;
 
 let i = 0;
@@ -161,5 +159,5 @@ function loading() {
         if (loadingElement) {
             loadingElement.style.display = 'none';
         }
-    }, 1000);
+    }, 10000);
 };

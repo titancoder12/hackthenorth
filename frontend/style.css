@@ -17,6 +17,7 @@ body {
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     overflow: hidden;
+    text-align: center;
 }
 
 .modal-content {
@@ -146,13 +147,14 @@ h1 {
     font-size: 16px;
     margin-right: 10px;
     resize: none; 
-    overflow: hidden; 
+    overflow: scroll;
     height: auto; 
-    max-height: 80px; 
+    min-height: fit-content;
     box-sizing: border-box; 
     line-height: 1.4;
     position: relative; 
     background: #ffffff;
+    width: auto;
 }
 
 .input-box::before {

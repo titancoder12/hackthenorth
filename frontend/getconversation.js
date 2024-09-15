@@ -10,7 +10,7 @@
 //     console.log(payload.conversation);
 //     return payload.conversation;
 // }
-function add_Message(text, fromUser = true) {
+function add_Message(text1, text2, fromUser = true) {
     const chatBox = document.getElementById('chat-box');
     const sendBtn = document.getElementById('send-btn');
     const endBtn = document.getElementById('end-btn');
@@ -38,14 +38,14 @@ function add_Message(text, fromUser = true) {
 
     const textArea = document.createElement('textarea');
     textArea.className = 'input-box';
-    textArea.value = text;
+    textArea.value = text1;
     textArea.readOnly = true;
     textArea.rows = 4;
     textArea.style.resize = 'none';
 
     const textArea2 = document.createElement('textarea');
     textArea2.className = 'input-box';
-    textArea2.value = text;
+    textArea2.value = text2;
     textArea2.readOnly = true;
     textArea2.rows = 4;
     textArea2.style.resize = 'none';
@@ -81,9 +81,9 @@ function startConversation(text1, text2, msgnum) {
         messages = JSON.parse(messages);
         console.log(messages);
         for (let i = 0; i < messages["1"].length; i++) {
-            console.log(messages["1"][i]);
-            add_Message(messages["1"][i]);
-            add_Message(messages["2"][i]);
+            console.log(messages["1"]);
+            console.log(messages["2"]);
+            add_Message(messages["1"][i], messages["2"][i]);
         }
     });
     console.log("done");

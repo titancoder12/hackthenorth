@@ -177,6 +177,6 @@ class createConversation(APIView):
             }
 
             # Return the data
-            print(MyJSONRenderer().render(data))
+            #print(MyJSONRenderer().render(data))
             return Response(MyJSONRenderer().render(data), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
